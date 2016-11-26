@@ -1,0 +1,14 @@
+<!-- PAGE TITLE -->
+<div class="page-header">
+  <h3>Status Message</h3>
+</div>
+<!-- SHOW ERROR/SUCCESS MESSAGES -->
+<div id="responses-messages">
+  <div class="col-md-12" id="responses">
+    <div class="row" *ngFor="let status of statusMessages">
+      <p class="bg-info">
+        {{status.timestamp | date:'medium'}} - {{status.message}}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,57 +1,59 @@
-buildscript{
-  ext{
-    jacksonVersion="2.6.3"
+buildscript {
+  ext {
+    jacksonVersion = "2.6.3"
   }
-	repositories{
-		mavenCentral()
-	}
-	dependencies{
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
-	}
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+  }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-jar{
-	baseName = 'spring-boot-websocket'
-	version = '0.1.1'
+jar {
+  baseName = 'spring-boot-websocket'
+  version = '0.1.1'
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-repositories{
-	mavenCentral()
+repositories {
+  mavenCentral()
 }
 
-springBoot{
-	executable = true
+springBoot {
+  executable = true
 }
 
-bootRun{
-	addResources = true
-	
-	//add system properties from commandline
-	systemProperties(System.properties)
+bootRun {
+  addResources = true
+  
+  //add system properties from commandline
+  systemProperties(System.properties)
 }
-dependencies{
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-websocket')
-    compile("com.typesafe.akka:akka-actor_2.11:2.4.14") 
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.boot:spring-boot-starter-websocket')
+  compile("com.typesafe.akka:akka-actor_2.11:2.4.14")
+  compile("io.paradoxical:jackson-lombok:1.1")
+  
   compile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
   compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
   compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
   compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}")
   
-	runtime('org.springframework.boot:spring-boot-devtools')
-	compileOnly('org.projectlombok:lombok')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+  runtime('org.springframework.boot:spring-boot-devtools')
+  compileOnly('org.projectlombok:lombok')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-task wrapper(type: Wrapper){
-	gradleVersion = '3.2'
+task wrapper(type: Wrapper) {
+  gradleVersion = '3.2'
 }
